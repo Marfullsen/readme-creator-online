@@ -6,7 +6,7 @@
 
 # Readme Creator online
 
-[![lit](https://img.shields.io/badge/Lit-2.2.7-blue.svg)](https://www.djangoproject.com/)
+[![lit](https://img.shields.io/badge/Lit-2.2.7-blue.svg)](https://lit.dev/)
 [![Built with open-wc recommendations](https://img.shields.io/badge/open--wc/create-0.38.63-blue.svg)](https://github.com/open-wc)
 
 </div>
