@@ -16,8 +16,10 @@
 To get started:
 
 ```bash
+git clone https://github.com/Marfullsen/readme-creator-online.git
+cd readme-creator-online
 npm install
-# requires node 10 & npm 6 or higher
+npm start
 ```
 
 ## Scripts
