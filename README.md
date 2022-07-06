@@ -1,12 +1,15 @@
 <p align="center">
-  <img width="200" src="https://open-wc.org/hero.png"></img>
+  <img src="./docs/img/readme-creator-icon.webp"></img>
 </p>
+
+<div align="center">
 
 # Readme Creator online
 
-## Open-wc Starter App
+[![lit](https://img.shields.io/badge/Lit-2.2.7-blue.svg)](https://www.djangoproject.com/)
+[![Built with open-wc recommendations](https://img.shields.io/badge/open--wc/create-0.38.63-blue.svg)](https://github.com/open-wc)
 
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
+</div>
 
 ## Quickstart
 
@@ -26,11 +29,6 @@ npm install
 - `lint` runs the linter for your project
 - `format` fixes linting and formatting errors
 
-## Tooling configs
-
-For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
-
-If you customize the configuration a lot, you can consider moving them to individual files.
 
 ## Capturas de pantalla
 
@@ -46,4 +44,5 @@ If you customize the configuration a lot, you can consider moving them to indivi
 
 ## References
 
+- [Open WC Guide](https://open-wc.org/guides/)
 - [HTML Arrow Symbol, Arrow Entity](https://www.toptal.com/designers/htmlarrows/arrows/)
