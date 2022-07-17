@@ -90,19 +90,35 @@ export class CardInput extends LitElement {
     this.title = 'My app';
   }
 
+  btnNextAction(e) {
+    e.preventDefault();
+    const valor = this.input.value
+    // eslint-disable-next-line no-alert
+    alert(valor);
+    this.input.value = '';
+  }
+
+  get input() {
+    return this.renderRoot?.querySelector('#currentInput') ?? null;
+  }
+
+  updated() {
+    this.renderRoot?.querySelector('#currentInput').focus()
+  }
+
   render() {
     return html`
     <main class="flex flex-center w-100 h-100 flex-col">
       <div class="borde-negro p-2 back-card">
       </div>
       <div class="borde-negro p-2 z-2 front-card">
-        <div class="content">
+        <form class="content">
           <label class="title" for="currentInput">¿Cómo se llama el proyecto?</label>
           <div>
             <input type="text" placeholder="Nombre del proyecto" id="currentInput">
-            <button class="button-next">➤</button>
+            <button @click=${this.btnNextAction} class="button-next">➤</button>
           </div>
-        </div>
+        </form>
       </div>
     </main>
     `;
