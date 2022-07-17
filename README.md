@@ -48,3 +48,6 @@ npm start
 
 - [Open WC Guide](https://open-wc.org/guides/)
 - [HTML Arrow Symbol, Arrow Entity](https://www.toptal.com/designers/htmlarrows/arrows/)
+- [how and where to add an 'Esc' listener to a litElement component?](https://stackoverflow.com/questions/68130145/how-and-where-to-add-an-esc-listener-to-a-litelement-component)
+- [EventListener Enter Key [duplicate]](https://stackoverflow.com/questions/14542062/eventlistener-enter-key)
+- [Lit Lifecycle, updated()](https://lit.dev/docs/components/lifecycle/#reactive-update-cycle-performing)
