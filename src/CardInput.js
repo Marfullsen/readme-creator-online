@@ -1,13 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
 export class CardInput extends LitElement {
-  static get properties() {
-    return {
-      title: { type: String },
-      _cardInfo: {state: true},
-    };
-  }
-
   static get styles() {
     return css`
     .borde-negro {
@@ -83,29 +76,75 @@ export class CardInput extends LitElement {
     .title {
       margin-bottom: .5rem;
     }
+
+    .yellowCard {
+      background-color: #FFF2CC;
+      border-color: #D6B656;
+    }
+
+    .blueCard {
+      background-color: #DAE8FC;
+      border-color: #6C8EBF;
+    }
+
+    .greyCard {
+      background-color: #F5F5F5;
+      border-color: #666666;
+    }
+
+    .greenCard {
+      background-color: #D5E8D4;
+      border-color: #82B366;
+    }
+
+    .orangeCard {
+      background-color: #FFE6CC;
+      border-color: #D79B00;
+    }
+
+    .pinkCard {
+      background-color: #F8CECC;
+      border-color: #B85450;
+    }
+
+    .purpleCard {
+      background-color: #E1D5E7;
+      border-color: #9673A6;
+    }
     `;
+  }
+
+  static get properties() {
+    return {
+      title: { type: String },
+      _cardInfo: { state: true },
+    };
   }
 
   constructor() {
     super();
     this._cardInfo = [
-      {title: '¿Cómo se llama el proyecto?', color: 'red'},
-      {title: 'Cuéntalo en pocas palabras', color: 'red'},
-      {title: 'Encuentra un ícono', color: 'red'},
-      {title: '¿Qué tecnologías usaste?', color: 'red'},
-      {title: 'Danos un pequeño resumen', color: 'red'},
-      {title: 'Sube algunas capturas', color: 'red'},
-      {title: 'Nombra algunas referencias', color: 'red'},
+      { title: '¿Cómo se llama el proyecto?', subtitle: 'Nombre del proyecto', color: 'yellowCard', required: true },
+      { title: 'Cuéntalo en pocas palabras', subtitle: 'En simples palabras', color: 'blueCard', required: true },
+      { title: 'Encuentra un ícono', subtitle: 'Buscar un ícono', color: 'greyCard', required: false },
+      { title: '¿Qué tecnologías usaste?', subtitle: 'Tecnologías usadas', color: 'greenCard', required: false },
+      { title: 'Danos un pequeño resumen', subtitle: '¿De qué trata el proyecto?', color: 'orangeCard', required: false },
+      { title: 'Sube algunas capturas', subtitle: 'Subir screenshots', color: 'pinkCard', required: false },
+      { title: 'Nombra algunas referencias', subtitle: 'Referencias, agradecimientos.', color: 'purpleCard', required: false },
     ];
     this.currentTitle = 0
   }
 
   btnNextAction(e) {
-    e.preventDefault();
-    // const valor = this.input.value;
-    this.currentTitle += 1;
-    this.input.value = '';
-    this.requestUpdate();
+    const isRequired = this._cardInfo[this.currentTitle].required
+    const validInput = () => isRequired ? (this.input.value || false) : true;
+    if (validInput()) {
+      e.preventDefault();
+      const totalTitles = this._cardInfo.length - 1
+      if (this.currentTitle < totalTitles) this.currentTitle += 1;
+      this.input.value = '';
+      this.requestUpdate();
+    }
   }
 
   get input() {
@@ -120,14 +159,14 @@ export class CardInput extends LitElement {
     const cardInfo = this._cardInfo;
     return html`
     <main class="flex flex-center w-100 h-100 flex-col">
-      <div class="borde-negro p-2 back-card">
+      <div class="borde-negro p-2 back-card ${cardInfo[this.currentTitle].color}">
       </div>
       <div class="borde-negro p-2 z-2 front-card">
         <form class="content">
           <label class="title" for="currentInput">${cardInfo[this.currentTitle].title}</label>
           <div>
-            <input type="text" placeholder="Nombre del proyecto" id="currentInput">
-            <button @click=${this.btnNextAction} class="button-next">➤</button>
+            <input type="text" placeholder="${cardInfo[this.currentTitle].subtitle}" id="currentInput" required>
+            <button @click=${this.btnNextAction} class="button-next ${cardInfo[this.currentTitle].color}">➤</button>
           </div>
         </form>
       </div>
