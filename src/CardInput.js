@@ -118,20 +118,23 @@ export class CardInput extends LitElement {
     return {
       title: { type: String },
       _cardInfo: { state: true },
+      processing: { type: Boolean }
     };
   }
 
   constructor() {
     super();
+    this.processing = true;
     this._cardInfo = [
       { title: '¿Cómo se llama el proyecto?', subtitle: 'Nombre del proyecto', color: 'yellowCard', required: true },
       { title: 'Cuéntalo en pocas palabras', subtitle: 'En simples palabras', color: 'blueCard', required: true },
-      { title: 'Encuentra un ícono', subtitle: 'Buscar un ícono', color: 'greyCard', required: false },
+      { title: 'Descríbelo de manera general', subtitle: 'Explícalo en un resumen', color: 'orangeCard', required: false },
       { title: '¿Qué tecnologías usaste?', subtitle: 'Tecnologías usadas', color: 'greenCard', required: false },
-      { title: 'Danos un pequeño resumen', subtitle: '¿De qué trata el proyecto?', color: 'orangeCard', required: false },
+      { title: 'Encuentra un ícono', subtitle: 'Buscar un ícono', color: 'greyCard', required: false },
       { title: 'Sube algunas capturas', subtitle: 'Subir screenshots', color: 'pinkCard', required: false },
       { title: 'Nombra algunas referencias', subtitle: 'Referencias, agradecimientos.', color: 'purpleCard', required: false },
     ];
+    this._collectedData = ['title', 'caption', 'desc', 'techs', 'icon', 'screenshots', 'refs']
     this.currentTitle = 0
   }
 
@@ -140,9 +143,17 @@ export class CardInput extends LitElement {
     const validInput = () => isRequired ? (this.input.value || false) : true;
     if (validInput()) {
       e.preventDefault();
-      const totalTitles = this._cardInfo.length - 1
-      if (this.currentTitle < totalTitles) this.currentTitle += 1;
+
+      this._collectedData[this.currentTitle] = this.input.value
       this.input.value = '';
+
+      const totalTitles = this._cardInfo.length - 1
+      if (this.currentTitle < totalTitles) {
+        this.currentTitle += 1;
+      } else {
+        this.processing = false;
+      }
+
       this.requestUpdate();
     }
   }
@@ -157,7 +168,8 @@ export class CardInput extends LitElement {
 
   render() {
     const cardInfo = this._cardInfo;
-    return html`
+    return this.processing
+    ? html`
     <main class="flex flex-center w-100 h-100 flex-col">
       <div class="borde-negro p-2 back-card ${cardInfo[this.currentTitle].color}">
       </div>
@@ -170,6 +182,20 @@ export class CardInput extends LitElement {
           </div>
         </form>
       </div>
+    </main>
+    `
+    : html`
+    <main class="flex flex-center w-100 h-100 flex-col">
+      <code>${this._collectedData[4]}</code>
+      <h1>${this._collectedData[0]}</h1>
+      <code>Badge: ||${this._collectedData[3]}||</code>
+      <p>${this._collectedData[1]}</p>
+      <h2>¿Qué es este proyecto?</h2>
+      <p>${this._collectedData[2]}</p>
+      <h2>Capturas de pantalla</h2>
+      <code>${this._collectedData[5]}</code>
+      <h2>Referencias</h2>
+      <code>${this._collectedData[6]}</code>
     </main>
     `;
   }
