@@ -4,6 +4,7 @@ export class CardInput extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      _cardInfo: {state: true},
     };
   }
 
@@ -87,15 +88,24 @@ export class CardInput extends LitElement {
 
   constructor() {
     super();
-    this.title = 'My app';
+    this._cardInfo = [
+      {title: '¿Cómo se llama el proyecto?', color: 'red'},
+      {title: 'Cuéntalo en pocas palabras', color: 'red'},
+      {title: 'Encuentra un ícono', color: 'red'},
+      {title: '¿Qué tecnologías usaste?', color: 'red'},
+      {title: 'Danos un pequeño resumen', color: 'red'},
+      {title: 'Sube algunas capturas', color: 'red'},
+      {title: 'Nombra algunas referencias', color: 'red'},
+    ];
+    this.currentTitle = 0
   }
 
   btnNextAction(e) {
     e.preventDefault();
-    const valor = this.input.value
-    // eslint-disable-next-line no-alert
-    alert(valor);
+    // const valor = this.input.value;
+    this.currentTitle += 1;
     this.input.value = '';
+    this.requestUpdate();
   }
 
   get input() {
@@ -107,13 +117,14 @@ export class CardInput extends LitElement {
   }
 
   render() {
+    const cardInfo = this._cardInfo;
     return html`
     <main class="flex flex-center w-100 h-100 flex-col">
       <div class="borde-negro p-2 back-card">
       </div>
       <div class="borde-negro p-2 z-2 front-card">
         <form class="content">
-          <label class="title" for="currentInput">¿Cómo se llama el proyecto?</label>
+          <label class="title" for="currentInput">${cardInfo[this.currentTitle].title}</label>
           <div>
             <input type="text" placeholder="Nombre del proyecto" id="currentInput">
             <button @click=${this.btnNextAction} class="button-next">➤</button>
