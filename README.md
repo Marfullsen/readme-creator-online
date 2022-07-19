@@ -35,12 +35,12 @@ npm start
 ## Capturas de pantalla
 
 <div align="center">
-  <a href="https://marfullsen.github.io/" rel="noopener">
+  <a href="https://marfullsen.github.io/readme-creator-online/" rel="noopener">
   <img src="./docs/img/readme-creator-online.png" alt="Screenshot"></a>
 </div>
 
 <div align="center">
-  <a href="https://marfullsen.github.io/" rel="noopener">
+  <a href="https://marfullsen.github.io/readme-creator-online/" rel="noopener">
   <img src="./docs/img/readme-creator-disambiguation.png" alt="Screenshot"></a>
 </div>
 
